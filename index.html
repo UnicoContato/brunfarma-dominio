@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BrunFarma</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            green: '#00A859', 
+                            red: '#E53935',
+                            dark: '#1F2937',
+                            header: '#2ECC71' // Nova cor verde do header baseada na imagem
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        .reveal-on-scroll { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal-on-scroll.active { opacity: 1; transform: translateY(0); }
+        html { scroll-behavior: smooth; }
+        body { overflow-x: hidden; }
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #00A859; border-radius: 5px; }
+        ::-webkit-scrollbar-thumb:hover { background: #008040; }
+    </style>
+</head>
+<body class="font-sans text-gray-700 antialiased">
+
+    <header id="main-header" class="fixed w-full top-0 z-50 bg-brand-header shadow-md transition-transform duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-24"> <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="flex items-center gap-2">
+                        <img src="img/logo_transparente.png" alt="BrunFarma Logo" class="h-80 w-auto"> 
+                    </a>
+                </div>
+                
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#inicio" class="text-white hover:text-green-100 font-medium transition">Início</a>
+                    <a href="#sobre" class="text-white hover:text-green-100 font-medium transition">Sobre Nós</a>
+                    <a href="#servicos" class="text-white hover:text-green-100 font-medium transition">Serviços</a>
+                    <a href="#galeria" class="text-white hover:text-green-100 font-medium transition">Galeria</a>
+                    <a href="#contato" class="text-white hover:text-green-100 font-medium transition">Contato</a>
+                    
+                    <a href="https://wa.me/5581983050505" target="_blank" class="bg-brand-red hover:bg-red-700 text-white px-5 py-2 rounded-full font-bold flex items-center gap-2 transition shadow-lg transform hover:scale-105">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+                        Peça pelo WhatsApp
+                    </a>
+                </div>
+
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-white hover:text-green-100 focus:outline-none">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-brand-header border-t border-green-500">
+            <div class="px-4 pt-2 pb-4 space-y-2">
+                <a href="#inicio" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-green-600">Início</a>
+                <a href="#sobre" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-green-600">Sobre Nós</a>
+                <a href="#servicos" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-green-600">Serviços</a>
+                <a href="#galeria" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-green-600">Galeria</a>
+                <a href="#contato" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-green-600">Contato</a>
+                <a href="https://wa.me/5581983050505" target="_blank" class="block px-3 py-2 rounded-md text-base font-medium text-brand-green font-bold bg-white mt-2 text-center">
+                    Peça agora no WhatsApp
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <section id="inicio" class="relative h-screen flex items-center justify-center">
+        <div class="absolute inset-0 z-0">
+            <img src="img/2.jfif" alt="Fachada BrunFarma" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-black bg-opacity-60"></div>
+        </div>
+        
+        <div class="relative z-10 text-center px-4 reveal-on-scroll">
+            <h1 class="text-5xl md:text-7xl font-bold text-white mb-4 tracking-tight">BrunFarma</h1>
+            <p class="text-xl md:text-2xl text-gray-200 mb-8 font-light">Sua saúde, nosso cuidado.</p>
+            <a href="https://wa.me/5581983050505" target="_blank" class="inline-block bg-brand-red hover:bg-red-700 text-white text-lg font-bold py-4 px-8 rounded-full transition transform hover:scale-105 shadow-xl">
+                Faça seu Pedido
+            </a>
+        </div>
+    </section>
+
+    <section id="sobre" class="py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-4 reveal-on-scroll">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-brand-dark mb-4">Sobre Nós</h2>
+                <div class="w-24 h-1 bg-brand-green mx-auto rounded"></div>
+            </div>
+            
+            <div class="prose prose-lg mx-auto text-gray-600 text-center leading-relaxed space-y-6">
+                <p>
+                    A Brunfarma carrega em cada detalhe a força de 15 anos de história dedicados ao cuidado, à saúde e ao atendimento humanizado em Camaragibe.
+                    Ao longo dessa trajetória, crescemos, evoluímos e ampliamos nossos serviços — sempre guiados pelo mesmo propósito que nos trouxe até aqui: cuidar de pessoas com verdade, respeito e agilidade.
+                </p>
+                <p>
+                    O que começou de forma simples, com trabalho duro e muita determinação, hoje se tornou uma referência na cidade. São três unidades — Tabatinga, Santa Mônica e Terminal — preparadas para oferecer a você uma experiência completa: medicamentos, perfumaria, infantil, conveniência e uma equipe treinada para resolver, orientar e acolher.
+                </p>
+                <p class="font-semibold text-brand-green">
+                    Brunfarma é tradição, inovação e amor pelo que faz. É a farmácia que cresceu junto com a cidade. É a farmácia que há 15 anos cuida de você.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="servicos" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16 reveal-on-scroll">
+                <h2 class="text-3xl md:text-4xl font-bold text-brand-dark mb-4">Nossos Serviços</h2>
+                <div class="w-24 h-1 bg-brand-red mx-auto rounded"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-2 reveal-on-scroll">
+                    <svg class="w-16 h-16 text-brand-green mx-auto mb-6" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"> <g fill="currentColor"> <path fill="none" d="M0 0H24V24H0z" /> <path d="M19 2v2h-2v3c1.657 0 3 1.343 3 3v11c0 .552-.448 1-1 1H5c-.552 0-1-.448-1-1V10c0-1.657 1.343-3 3-3V4H5V2h14zm-2 7H7c-.552 0-1 .448-1 1v10h12V10c0-.552-.448-1-1-1zm-4 2v2h2v2h-2.001L13 17h-2l-.001-2H9v-2h2v-2h2zm2-7H9v3h6V4z" /> </g> </svg>
+                    <h3 class="text-xl font-bold text-center text-gray-800 mb-2">Medicamentos</h3>
+                    <p class="text-gray-600 text-center">Variedade completa de medicamentos de referência, genéricos e similares com os melhores preços.</p>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-2 reveal-on-scroll">
+                    <svg class="w-16 h-16 text-brand-green mx-auto mb-6" fill="currentColor" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 442 442" xml:space="preserve"> <g> <path d="M231.5,50.5c0-5.79-4.71-10.5-10.5-10.5c-5.79,0-10.5,4.71-10.5,10.5S215.21,61,221,61C226.79,61,231.5,56.29,231.5,50.5z" /> <path d="M346,163.682h-60V122c0-5.522-4.478-10-10-10h-10V10c0-5.523-4.478-10-10-10h-70c-5.523,0-10,4.477-10,10v102h-10 c-5.523,0-10,4.478-10,10v41.682H96c-11.028,0-20,8.972-20,20V422c0,11.028,8.972,20,20,20h250c11.028,0,20-8.972,20-20V183.682 C366,172.653,357.028,163.682,346,163.682z M196,20h50v92h-50V20z M96,422V183.682h70c5.523,0,10-4.477,10-10V132h35v71.682h-85 c-5.523,0-10,4.478-10,10V392c0,5.522,4.477,10,10,10h190c5.522,0,10-4.478,10-10v-60.892c0-5.522-4.478-10-10-10s-10,4.478-10,10 V382H136V223.682h75V352c0,5.522,4.477,10,10,10c5.523,0,10-4.478,10-10V223.682h75V297c0,5.522,4.478,10,10,10s10-4.478,10-10 v-83.318c0-5.522-4.478-10-10-10h-85V132h35v41.682c0,5.523,4.478,10,10,10h70L346.002,422H96z" /> </g> </svg>
+                    <h3 class="text-xl font-bold text-center text-gray-800 mb-2">Perfumaria & Infantil</h3>
+                    <p class="text-gray-600 text-center">Produtos de higiene pessoal, dermocosméticos, fraldas e cuidados para seu bebê.</p>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-2 reveal-on-scroll">
+                    <svg class="w-16 h-16 text-brand-green mx-auto mb-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="6" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M19 2C19 2 21 3.2 21 6C21 8.8 19 10 19 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M17 4C17 4 18 4.6 18 6C18 7.4 17 8 17 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M17.9975 18C18 17.8358 18 17.669 18 17.5C18 15.0147 14.4183 13 10 13C5.58172 13 2 15.0147 2 17.5C2 19.9853 2 22 10 22C12.231 22 13.8398 21.8433 15 21.5634" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                    <h3 class="text-xl font-bold text-center text-gray-800 mb-2">Atendimento Humanizado</h3>
+                    <p class="text-gray-600 text-center">Equipe treinada para orientar, acolher e resolver suas dúvidas com atenção e responsabilidade.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="galeria" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-12 reveal-on-scroll">
+                <h2 class="text-3xl md:text-4xl font-bold text-brand-dark mb-4">Nossa Loja</h2>
+                <div class="w-24 h-1 bg-brand-green mx-auto rounded"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="h-64 overflow-hidden rounded-lg shadow-md reveal-on-scroll">
+                    <img src="img/3.jfif" alt="Interior Loja 1" class="w-full h-full object-cover transform hover:scale-110 transition duration-500">
+                </div>
+                <div class="h-64 overflow-hidden rounded-lg shadow-md reveal-on-scroll">
+                    <img src="img/2.jfif" alt="Fachada Loja" class="w-full h-full object-cover transform hover:scale-110 transition duration-500">
+                </div>
+                <div class="h-64 overflow-hidden rounded-lg shadow-md reveal-on-scroll">
+                    <img src="img/1.jfif" alt="Interior Loja 2" class="w-full h-full object-cover transform hover:scale-110 transition duration-500">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contato" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-12 reveal-on-scroll">
+                <h2 class="text-3xl md:text-4xl font-bold text-brand-dark mb-4">Onde Estamos</h2>
+                <p class="text-gray-600 mb-8">Selecione a unidade mais próxima de você.</p>
+                
+                <div class="inline-flex bg-gray-200 rounded-lg p-1 space-x-1">
+                    <button id="btn-unit-1" onclick="switchTab('unit1')" class="px-6 py-2 rounded-md text-sm font-medium transition-colors bg-white text-brand-green shadow-sm">Unidade 1</button>
+                    <button id="btn-unit-2" onclick="switchTab('unit2')" class="px-6 py-2 rounded-md text-sm font-medium transition-colors text-gray-500 hover:text-brand-green">Unidade 2</button>
+                </div>
+            </div>
+
+            <div id="unit1-content" class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start reveal-on-scroll">
+                <div class="bg-white p-8 rounded-xl shadow-lg h-full">
+                    <h3 class="text-2xl font-bold text-brand-green mb-6 border-b pb-4">Unidade 1</h3>
+                    <ul class="space-y-4 text-gray-700">
+                        <li><strong>Razão Social:</strong> BRUNA SALES MARQUES LTDA</li>
+                        <li><strong>CNPJ:</strong> 34.478.504/0001-33</li>
+                        <li><strong>Endereço:</strong> Av. Luiza de Medeiros, 561 A</li>
+                        <li><strong>Bairro:</strong> Tabatinga</li>
+                        <li><strong>Cidade:</strong> Camaragibe - PE</li>
+                        <li><strong>CEP:</strong> 54.756-770</li>
+                        <li class="flex items-center gap-2">
+                            <svg class="w-5 h-5 text-brand-green" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                            (81) 98305-0505
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <svg class="w-5 h-5 text-brand-green" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                            fiscal@brumarcontabil.com.br
+                        </li>
+                    </ul>
+                </div>
+                <div class="h-[500px] w-full bg-gray-200 rounded-xl overflow-hidden shadow-lg">
+                    <iframe class="w-full h-full border-0" src="https://maps.google.com/maps?q=Av+Luiza+de+Medeiros+561+Camaragibe&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <div id="unit2-content" class="hidden grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+                <div class="bg-white p-8 rounded-xl shadow-lg h-full">
+                    <h3 class="text-2xl font-bold text-brand-green mb-6 border-b pb-4">Unidade 2</h3>
+                    <ul class="space-y-4 text-gray-700">
+                        <li><strong>Razão Social:</strong> A.R SOUZA COMERCIO DE PRODUTOS FARMACEUTICOS LTDA</li>
+                        <li><strong>CNPJ:</strong> 48.472.941/0001-54</li>
+                        <li><strong>Endereço:</strong> Av. Luiza de Medeiros, 838</li>
+                        <li><strong>Bairro:</strong> Tabatinga</li>
+                        <li><strong>Cidade:</strong> Camaragibe - PE</li>
+                        <li><strong>CEP:</strong> 54.756-770</li>
+                        <li class="flex items-center gap-2">
+                            <svg class="w-5 h-5 text-brand-green" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                            (81) 98305-0505
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <svg class="w-5 h-5 text-brand-green" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                            contabil@brumarcontabil.com.br
+                        </li>
+                    </ul>
+                </div>
+                <div class="h-[500px] w-full bg-gray-200 rounded-xl overflow-hidden shadow-lg">
+                    <iframe class="w-full h-full border-0" src="https://maps.google.com/maps?q=Av+Luiza+de+Medeiros+838+Camaragibe&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen></iframe>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer class="bg-brand-dark text-white py-8">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <div class="mb-4">
+                <img src="img/logo_transparente.png" alt="BrunFarma" class="h-10 mx-auto brightness-200 grayscale">
+            </div>
+            <p class="text-gray-400 text-sm mb-4">© 2025 BrunFarma. Todos os direitos reservados.</p>
+            <button onclick="toggleModal('privacy-modal')" class="text-gray-400 hover:text-white text-sm underline transition">Política de Privacidade</button>
+        </div>
+    </footer>
+
+    <div id="privacy-modal" class="fixed inset-0 z-50 hidden overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true" onclick="toggleModal('privacy-modal')"></div>
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">​</span>
+            <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                    <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">Política de Privacidade</h3>
+                    <div class="mt-2">
+                        <p class="text-sm text-gray-500">
+                            A BrunFarma respeita a sua privacidade. Este site tem caráter meramente informativo e institucional. 
+                            Não coletamos dados pessoais sensíveis automaticamente através desta página. 
+                            Ao clicar nos botões de contato, você será redirecionado para o WhatsApp, onde a política de privacidade da respectiva plataforma se aplica.
+                        </p>
+                    </div>
+                </div>
+                <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                    <button type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-brand-green text-base font-medium text-white hover:bg-green-700 focus:outline-none sm:ml-3 sm:w-auto sm:text-sm" onclick="toggleModal('privacy-modal')">
+                        Entendi
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
